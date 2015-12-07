@@ -11,11 +11,11 @@ function authenticatedUser(req, res, next) {
   res.redirect('/login');
 }
 
-router.route('/profiles')
+router.route('/profiles/:format?')
   .get(profilesController.getProfiles)
   .post(profilesController.addProfile)
 
-router.route('/')
+router.route('/:format?')
   .get(profilesController.getProfiles)
   .post(profilesController.addProfile)
 
@@ -39,5 +39,8 @@ router.route('/auth/github/callback')
 
 router.route('/login')
   .get(usersController.login)
+
+router.route('/logout')
+  .get(usersController.logout)
 
 module.exports = router;
