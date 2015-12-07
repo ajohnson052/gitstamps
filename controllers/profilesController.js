@@ -8,11 +8,11 @@ function error(response, message){
   response.json({error: message})
 }
 
-function authenticatedUser(req, res, next) {
-  // If the user is authenticated, then we continue the execution
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login');
-}
+// function authenticatedUser(req, res, next) {
+//   // If the user is authenticated, then we continue the execution
+//   if (req.isAuthenticated()) return next();
+//   res.redirect('/login');
+// }
 
 var profilesController = {
   getProfiles: function(req,res){
