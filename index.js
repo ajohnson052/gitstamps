@@ -19,13 +19,6 @@ var app = express()// invokes express dependency and sets namespace to app
 app.use(bodyParser.json());// allows for parameters in JSON and html
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(methodOverride('_method'))// allows for put/delete request in html form
-
-app.use(/^(?!\/login)$/ ,function(req, res, next) {
-  // If the user is authenticated, then we continue the execution
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login');
-})
-
 app.set('view engine', 'hbs');
 app.set("views",__dirname +"/views");
 app.use(express.static(__dirname + '/public'))// connects assets like stylesheets
@@ -38,13 +31,6 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
-
-app.get(/^(?!\/login)$/ ,function(req, res, next) {
-  // If the user is authenticated, then we continue the execution
-  // console.log(req.isAuthenticated())
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login');
-})
 
 app.use(router)
 
